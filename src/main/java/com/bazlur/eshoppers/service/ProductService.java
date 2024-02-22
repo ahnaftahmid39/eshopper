@@ -1,5 +1,9 @@
 package com.bazlur.eshoppers.service;
 
-public class ProductService {
-  
+import java.util.List;
+
+import com.bazlur.eshoppers.dto.ProductDTO;
+
+public interface ProductService {
+  public List<ProductDTO> findAllProductSortedByName();
 }

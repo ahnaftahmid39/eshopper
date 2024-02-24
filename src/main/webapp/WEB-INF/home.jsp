@@ -1,33 +1,39 @@
-<% page import="com.bazlur.eshoppers.dto.ProductDTO" %>
-<% page import="java.util.List" %>
-<% page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
-<head>
-  <title>All Products </title>
-</head>
+<%@include file="includes/header.jsp" %>
+<%@include file="includes/navigation.jsp" %>
 
-<% List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("products"); %>
+<div class="container">
+  <div class="jumbotron">
+    <h1>
+      Welcome to eShoppers
+    </h1>
+    <img src="<c:url value="/image/cart.jpg"/>" style="height: 200p" alt=""/>
+  </div>
+  <div class="row">
+    <c:forEach var="product" items="${products}">
+      <div class="col-sm-4">
+        <div class="card h-100 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">
+              <c:out value="${product.name}"/>
+            </h5>
 
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Price</th>
-  </tr>
-  <% for (ProductDTO product: products) { %>
-  <tr>
-    <td>
-      <%= product.getName() %>
-    </td>
-    <td>
-      <%= product.getDescription() %>
-    </td>
-    <td>
-      <%= product.getPrice() %>
-    </td>
-  </tr>
-  <% } %>
-</table>
-</body>
+            <p>
+              <c:out value="${product.description}"/>
+            </p>
+
+            <p>
+              <c:out value="${product.price}"/>
+            </p>
+
+            <a href="#" class="card-link btn btn-outline-info"> Add to cart </a>
+          </div>
+        </div>
+      </div>
+    </c:forEach>
+  </div>
+</div>
+
+<%@include file="includes/footer.jsp" %>

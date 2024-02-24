@@ -15,5 +15,7 @@ repositories {
 dependencies {
     compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
 
+    implementation 'jstl:jstl:1.2'
+    implementation 'org.webjars:bootstrap:4.5.3'
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }

@@ -6,7 +6,7 @@ plugins {
 group 'com.bazlur.shopping-cart'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 21
+// sourceCompatibility = 21
 
 repositories {
     mavenCentral()

@@ -16,12 +16,12 @@ import java.util.List;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
-    private ProductService productService = new ProductServiceImpl( new DummyProductRepositoryImpl());
-
+    private ProductService productService = new ProductServiceImpl(new DummyProductRepositoryImpl());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (true) throw new RuntimeException("This is a test exception to check if the error page is working or not.");
+        // if (true) throw new RuntimeException("This is a test exception to check if
+        // the error page is working or not.");
         List<ProductDTO> allProducts = productService.findAllProductSortedByName();
         req.setAttribute("products", allProducts);
         req.getRequestDispatcher("/WEB-INF/home.jsp").forward(req, resp);

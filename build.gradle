@@ -17,5 +17,7 @@ dependencies {
 
     implementation 'jstl:jstl:1.2'
     implementation 'org.webjars:bootstrap:4.5.3'
+    implementation 'ch.qos.logback:logback-classic:1.2.3' 
+    implementation 'org.hibernate.validator:hibernate-validator:6.1.7.Final'
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }

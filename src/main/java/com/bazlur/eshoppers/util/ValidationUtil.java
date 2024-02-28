@@ -1,4 +1,11 @@
-import java.util.stream Collectors;
+package com.bazlur.eshoppers.util;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 public class ValidationUtil {
 
@@ -6,18 +13,23 @@ public class ValidationUtil {
 
   private final Validator validator;
 
-private ValidationUtil() {
+  private ValidationUtil() {
 
-  var validatorFactory = Validation.buildDefaultValidatorFactory();
-  this.validator=validatorFactory.getValidator();
+    var validatorFactory = Validation.buildDefaultValidatorFactory();
+    this.validator = validatorFactory.getValidator();
+  }
 
   public static ValidationUtil getInstance() {
     return INSTANCE;
-
   }
 
-public <T> Map<String, String> validate(T object) ( var violations = validator.validate(object);
+  public <T> Map<String, String> validate(T object) {
+    var violations = validator.validate(object);
+    return violations.stream().collect(
+        Collectors.toMap(
+            violation -> violation.getPropertyPath().toString(),
+            ConstraintViolation::getMessage,
+            (errorMsg1, errorMsg2) -> errorMsg1 + "<br/>" + errorMsg2));
+  }
 
-return violations.stream() collect(Collectors.toMap( violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage, (errorMsg1, errorMsg2) -> errorMsg1 + "<br/>" + errorMsg2) );
-}
 }

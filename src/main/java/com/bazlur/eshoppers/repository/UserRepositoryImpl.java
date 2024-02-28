@@ -1,5 +1,6 @@
 package com.bazlur.eshoppers.repository;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -12,6 +13,12 @@ public class UserRepositoryImpl implements UserRepository {
   public void save(User user) {
     USERS.add(user);
   }
-  
-  
+
+  @Override
+  public Optional<User> findByUsername(String username) {
+    return USERS.stream()
+        .filter(user -> user.getUsername().equals(username))
+        .findFirst();
+  }
+
 }

@@ -1,7 +1,5 @@
 package com.bazlur.eshoppers.service;
 
-import javax.validation.Validation;
-
 import com.bazlur.eshoppers.domain.User;
 import com.bazlur.eshoppers.dto.UserDTO;
 import com.bazlur.eshoppers.repository.UserRepository;
@@ -24,6 +22,10 @@ public class UserServiceImpl implements UserService {
     user.setUsername(userDTO.getUsername());
 
     userRepository.save(user);
+  }
+
+  public boolean isNotUniqueUsername(UserDTO user) {
+    return userRepository.findByUsername(user.getUsername()).isPresent();
   }
 
   private String encryptPassword(String password) {

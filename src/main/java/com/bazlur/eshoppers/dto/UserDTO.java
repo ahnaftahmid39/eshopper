@@ -4,6 +4,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.bazlur.eshoppers.annotations.PasswordEqual;
+
+@PasswordEqual(
+  first = "password", 
+  second = "confirmPassword", 
+  message = "Password and confirm password do not match."
+)
 public class UserDTO {
 
   @NotEmpty
